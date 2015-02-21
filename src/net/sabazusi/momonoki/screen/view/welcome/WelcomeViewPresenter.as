@@ -17,6 +17,7 @@ package net.sabazusi.momonoki.screen.view.welcome
 
         public function inactivate():void
         {
+            _view.visible = false;
             trace("welcome screen :: inactivate");
         }
     }

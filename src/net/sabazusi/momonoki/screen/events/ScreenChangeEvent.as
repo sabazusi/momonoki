@@ -8,7 +8,7 @@ package net.sabazusi.momonoki.screen.events
 
         private var _transitionTo:Class;
 
-        public function ScreenChangeEvent(type:String,transitionTo:Class, bubbles:Boolean, cancelable:Boolean)
+        public function ScreenChangeEvent(type:String,transitionTo:Class, bubbles:Boolean = false, cancelable:Boolean = false)
         {
             _transitionTo = transitionTo;
 

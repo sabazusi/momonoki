@@ -8,6 +8,7 @@ package net.sabazusi.momonoki.screen.view.play
     {
         public function PlayView(asset:PlayScreenAssetAccessor)
         {
+            this.addChild(asset.background);
         }
     }
 }

@@ -40,16 +40,16 @@ package net.sabazusi.momonoki.screen
             _switchSource.cancel();
             _currentScreen = null;
 
-            for(var keyClass in _screens)
+            for(var keyClass:* in _screens)
             {
-                if (keyClass is event.transitionTo)
+                if (keyClass == event.transitionTo)
                 {
                     _currentScreen = _screens[keyClass];
                     _currentScreen.activateScreen();
                 }
                 else
                 {
-                    _screens[keyClass].disposeScreen();
+                    _screens[keyClass].inactivateScreen();
                 }
             }
             _subscribeScreenSwitch();

@@ -3,6 +3,7 @@ package net.sabazusi.momonoki.screen
     import flash.events.EventDispatcher;
 
     import net.sabazusi.momonoki.asset.WelcomeScreenAssetAccessor;
+    import net.sabazusi.momonoki.screen.events.ScreenChangeEvent;
     import net.sabazusi.momonoki.screen.view.welcome.WelcomeView;
     import net.sabazusi.momonoki.screen.view.welcome.WelcomeViewPresenter;
     import net.sabazusi.momonoki.screen.view.welcome.WelcomeViewReactor;
@@ -10,6 +11,7 @@ package net.sabazusi.momonoki.screen
     import starling.display.DisplayObject;
 
     import starling.display.Sprite;
+    import starling.events.Event;
 
     public class WelcomeScreen extends EventDispatcher implements IScreen
     {
@@ -24,6 +26,11 @@ package net.sabazusi.momonoki.screen
             _view = new WelcomeView(asset);
             _reactor = new WelcomeViewReactor(_view);
             _presenter = new WelcomeViewPresenter(_view);
+
+            _reactor.tapToPlaySource
+                    .subscribe(function(event:Event):void{
+                        dispatchEvent(new ScreenChangeEvent(ScreenChangeEvent.TRANSITION, PlayScreen));
+                    });
         }
 
         public function activateScreen():void
