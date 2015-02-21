@@ -1,8 +1,11 @@
-package {
+package net.sabazusi
+{
 
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.text.TextField;
+
+    import net.sabazusi.momonoki.Momonoki;
 
     import raix.reactive.ICancelable;
 
@@ -12,10 +15,11 @@ package {
 
     import starling.core.Starling;
 
-    public class Momonoki extends Sprite
+    public class Main extends Sprite
     {
         private var _initializer:ICancelable;
-        public function Momonoki()
+
+        public function Main()
         {
             super();
 
@@ -27,14 +31,14 @@ package {
         {
             _initializer.cancel();
 
-            var starling:Starling = new Starling(MomonokiInitializer, stage);
+            var starling:Starling = new Starling(Momonoki, stage);
 
             // game property
             starling.antiAliasing = 1;
 
             // show stats for debug
             starling.showStats = true;
-            starling.showStatsAt("left", "top", 0.9);
+            starling.showStatsAt("left", "top", 1.5);
 
             starling.start();
 
@@ -42,6 +46,7 @@ package {
 
         private function _onError(e:Error):void
         {
+            throw e;
         }
     }
 }
