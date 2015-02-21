@@ -23,7 +23,7 @@ package net.sabazusi.momonoki.screen
             _currentScreen = _screens[initialScreen];
             _subscribeScreenSwitch();
 
-            _currentScreen.setUpScreen();
+            _currentScreen.activateScreen();
         }
 
         private function _subscribeScreenSwitch():void
@@ -45,7 +45,7 @@ package net.sabazusi.momonoki.screen
                 if (keyClass is event.transitionTo)
                 {
                     _currentScreen = _screens[keyClass];
-                    _currentScreen.setUpScreen();
+                    _currentScreen.activateScreen();
                 }
                 else
                 {

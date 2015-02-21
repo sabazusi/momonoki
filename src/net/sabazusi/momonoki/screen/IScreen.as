@@ -2,10 +2,14 @@ package net.sabazusi.momonoki.screen
 {
     import flash.events.IEventDispatcher;
 
+    import starling.display.DisplayObject;
+
     public interface IScreen extends IEventDispatcher
     {
-        function setUpScreen():void;
+        function activateScreen():void;
 
-        function disposeScreen():void;
+        function inactivateScreen():void;
+
+        function get displayObject():DisplayObject;
     }
 }

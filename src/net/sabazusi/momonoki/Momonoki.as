@@ -6,10 +6,13 @@ package net.sabazusi.momonoki
     import net.sabazusi.momonoki.asset.PlayScreenAssetAccessor;
     import net.sabazusi.momonoki.asset.WelcomeScreenAssetAccessor;
     import net.sabazusi.momonoki.screen.IScreen;
+    import net.sabazusi.momonoki.screen.IScreen;
     import net.sabazusi.momonoki.screen.MomonokiScreenSwitcher;
     import net.sabazusi.momonoki.screen.PlayScreen;
 
     import net.sabazusi.momonoki.screen.WelcomeScreen;
+
+    import raix.interactive.toEnumerable;
 
     import raix.reactive.ICancelable;
     import raix.reactive.Observable;
@@ -17,11 +20,13 @@ package net.sabazusi.momonoki
     import starling.display.Sprite;
     import starling.events.Event;
 
+    /**
+     * Starling Game Root Class.
+     */
     public class Momonoki extends Sprite
     {
         private static const _INITIAL_SCREEN:Class = WelcomeScreen;
         private var _screenSwitcher:MomonokiScreenSwitcher;
-
 
         public function Momonoki()
         {
@@ -36,15 +41,24 @@ package net.sabazusi.momonoki
 
         private function _instantiateScreens(asset:AssetAccessor):Dictionary
         {
-            var screens:Dictionary = new Dictionary();
-            screens[WelcomeScreen] = new WelcomeScreen(new WelcomeScreenAssetAccessor(asset));
-            screens[PlayScreen] = new PlayScreen(new PlayScreenAssetAccessor(asset));
-            return screens;
+            var screenMap:Dictionary = new Dictionary();
+            screenMap[WelcomeScreen] = new WelcomeScreen(new WelcomeScreenAssetAccessor(asset));
+            screenMap[PlayScreen] = new PlayScreen(new PlayScreenAssetAccessor(asset));
+            return screenMap;
         }
 
         private function _initializeScreens(screens:Dictionary):void
         {
-            // addedscreenが全部来たらswithcer.initialize(screen)して開始させる
+            //debug
+            this.stage.addEventListener(Event.ADDED_TO_STAGE, function(event:Event):void
+            {
+                trace("added to stage");
+            });
+
+            for each(var screen:IScreen in  screens)
+            {
+                this.addChild(screen.displayObject);
+            }
         }
     }
 }
