@@ -4,7 +4,7 @@ package net.sabazusi.momonoki.asset
     import starling.display.Button;
     import starling.display.Image;
 
-    public class PlayScreenAssetAccessor extends AssetAccessor
+    public class PlayScreenAssetAccessor
     {
         private var _accessor:AssetAccessor;
 
