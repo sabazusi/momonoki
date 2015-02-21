@@ -49,10 +49,9 @@ package net.sabazusi.momonoki
 
         private function _initializeScreens(screens:Dictionary):void
         {
-            //debug
-            this.stage.addEventListener(Event.ADDED_TO_STAGE, function(event:Event):void
+            this.addEventListener(Event.ADDED_TO_STAGE, function (event:Event):void
             {
-                trace("added to stage");
+                _screenSwitcher.initialize(_INITIAL_SCREEN);
             });
 
             for each(var screen:IScreen in  screens)

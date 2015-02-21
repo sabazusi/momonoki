@@ -2,8 +2,10 @@ package net.sabazusi.momonoki.screen.view.welcome
 {
     public class WelcomeViewReactor
     {
-        public function WelcomeViewReactor()
+        private var _view:WelcomeView;
+        public function WelcomeViewReactor(view:WelcomeView)
         {
+            _view = view;
         }
     }
 }

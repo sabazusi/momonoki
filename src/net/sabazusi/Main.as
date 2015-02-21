@@ -15,12 +15,14 @@ package net.sabazusi
 
     import starling.core.Starling;
 
+    [SWF(frameRate="60", backgroundColor="0xFF0000", width="480", height="320")]
     public class Main extends Sprite
     {
         private var _initializer:ICancelable;
 
         public function Main()
         {
+            trace("Application START.");
             super();
 
             _initializer = Observable.fromEvent(this, Event.ADDED_TO_STAGE)
@@ -38,7 +40,7 @@ package net.sabazusi
 
             // show stats for debug
             starling.showStats = true;
-            starling.showStatsAt("left", "top", 1.5);
+            starling.showStatsAt("right", "top", 1.5);
 
             starling.start();
 
