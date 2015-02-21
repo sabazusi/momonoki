@@ -3,11 +3,13 @@ package net.sabazusi.momonoki.screen
     import flash.events.EventDispatcher;
 
     import net.sabazusi.momonoki.asset.PlayScreenAssetAccessor;
+    import net.sabazusi.momonoki.screen.events.ScreenChangeEvent;
     import net.sabazusi.momonoki.screen.view.play.PlayView;
     import net.sabazusi.momonoki.screen.view.play.PlayViewPresenter;
     import net.sabazusi.momonoki.screen.view.play.PlayViewReactor;
 
     import starling.display.DisplayObject;
+    import starling.events.Event;
 
     public class PlayScreen extends EventDispatcher implements IScreen
     {
@@ -22,6 +24,11 @@ package net.sabazusi.momonoki.screen
             _view = new PlayView(asset);
             _reactor = new PlayViewReactor(_view);
             _presenter = new PlayViewPresenter(_view);
+
+            _reactor.backButtonTapSource
+                    .subscribe(function(e:Event):void{
+                        dispatchEvent(new ScreenChangeEvent(ScreenChangeEvent.TRANSITION, WelcomeScreen));
+                    })
         }
 
         public function activateScreen():void
